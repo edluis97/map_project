@@ -1,0 +1,28 @@
+#header {
+  min-height: 40px;
+  background: var(--bg_color-1);
+  
+  #header_wrap {
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding: 10px 0;
+  }
+  
+  #header_author {
+    color: #fff;
+    font-family: 'Poppins';
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  #header_socNetworks {
+    float: right;
+    
+    a {
+      font-size: 20px;
+      color: #fff;
+      margin-left: 8px;
+    }
+  }
+}
