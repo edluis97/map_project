@@ -33,4 +33,8 @@ $smtp = array(
   "bccName" => '',
 );
 
+$apiKeys = array(
+  'weatherapi.com'  => 'API_KEY', // weatherapi.com API Key
+);
+
 ?>

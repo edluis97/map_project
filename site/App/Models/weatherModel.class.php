@@ -5,14 +5,14 @@ class weatherModel
   
   public function getData($lat, $lon, $days, $lang) {
     
-    $apiKey = 'f76806eb568e48d88e9121112201811';
+    global $apiKeys;
+    
+    $apiKey = $apiKeys['weatherapi.com'];
     $coord = $lat.','.$lon;
     
     $weatherAPIAddress = 'http://api.weatherapi.com/v1/forecast.json?key='.$apiKey.'&q='.$coord.'&days='.$days.'&lang='.$lang;
     $weatherRequest = file_get_contents($weatherAPIAddress);
-    $weatherRequest = json_decode($weatherRequest, true);
-    
-    
+    $weatherRequest = json_decode($weatherRequest, true);    
     
     $response = array(
       'location' => array(
@@ -26,8 +26,7 @@ class weatherModel
         'condition' => $weatherRequest['current']['condition']['text'],
         'humidity'  => $weatherRequest['current']['humidity'],
       ),
-    );
-    
+    );    
     
     return $response;
   }
