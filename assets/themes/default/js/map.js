@@ -24,6 +24,20 @@ function zoom(x, y) {
   map.panTo(new L.LatLng(x, y));	
 }
 
+function getWeather(lat, long) {
+  $.ajax({
+    dataType: "json",
+    url: "api/weather?lat="+lat+"&lon="+long, 
+    success: function(result){
+      var weather = result;
+      
+      $("#current-weather .temp").html(weather.current.temperature.celsius + 'ºC');
+      $("#current-weather .cond").html(weather.current.condition);
+      $("#current-weather .humid").html(weather.current.humidity + '% Humidity');
+    }
+  });
+}
+
 map.on('mouseover', function(e) {
   var hlat = e.latlng.lat;
   var hlon = e.latlng.lng;
@@ -44,16 +58,6 @@ map.on('mouseover', function(e) {
     }
   });
   
-  $.ajax({
-    dataType: "json",
-    url: "api/weather?lat="+hlat+"&lon="+hlon+"&days=5", 
-    success: function(result){
-      var weather = result;
-      
-      $("#current-weather .temp").html(weather.current.temperature.celsius + 'ºC');
-      $("#current-weather .cond").html(weather.current.condition);
-      $("#current-weather .humid").html(weather.current.humidity + '% Humidity');
-    }
-  });
+  getWeather(hlat, hlon);
   
 });
